@@ -1,0 +1,6 @@
+version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
+options: "24f64e04e737690b317546300169b3f5"
+build_time: [508805903, 565214000]
+inputs:
+  "/Users/ryanwarner/Desktop/_my-projects/ios-calculator/Calculator/Calculator/ViewController.swift": !dirty [508805879, 0]
+  "/Users/ryanwarner/Desktop/_my-projects/ios-calculator/Calculator/Calculator/AppDelegate.swift": !dirty [508794575, 0]
