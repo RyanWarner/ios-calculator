@@ -17,6 +17,7 @@ class ViewController: UIViewController
     @IBAction func appendDigit(sender: UIButton)
     {
         let digit = sender.currentTitle!
+        calcDisplay.text = calcDisplay.text! + digit
         print( "digit: \(digit)" )
     }
 }
