@@ -13,11 +13,41 @@ class ViewController: UIViewController
 
     @IBOutlet weak var calcDisplay: UILabel!
     
+    var userIsInTheMiddleOfTypingANumber: Bool = false
 
     @IBAction func appendDigit(sender: UIButton)
     {
         let digit = sender.currentTitle!
-        calcDisplay.text = calcDisplay.text! + digit
-        print( "digit: \(digit)" )
+
+        if userIsInTheMiddleOfTypingANumber
+        {
+            calcDisplay.text = calcDisplay.text! + digit
+        }
+        else
+        {
+            calcDisplay.text = digit
+            userIsInTheMiddleOfTypingANumber = true
+        }
+    }
+    
+    var operandStack = Array<Double>()
+
+    @IBAction func enter(  )
+    {
+        userIsInTheMiddleOfTypingANumber = false
+        operandStack.append(displayValue)
+    }
+    
+    var displayValue: Double
+    {
+        get
+        {
+            return NSNumberFormatter().numberFromString(calcDisplay.text!)!.doubleValue
+        }
+        
+        set
+        {
+            calcDisplay.text = "\(newValue)"
+        }
     }
 }
