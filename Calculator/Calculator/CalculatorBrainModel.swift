@@ -10,11 +10,27 @@ import Foundation
 
 class CalculatorBrainModel
 {
-	private enum Op
+	private enum Op: CustomDebugStringConvertible
 	{
 		case Operand( Double )
 		case UnaryOperation( String, Double -> Double )
 		case BinaryOperation( String, ( Double, Double ) -> Double )
+		
+		var debugDescription: String
+		{
+			get
+			{
+				switch self
+				{
+				case .Operand( let operand ):
+					return "\(operand)"
+				case .UnaryOperation( let symbol, _ ):
+					return symbol
+				case .BinaryOperation( let symbol, _ ):
+					return symbol
+				}
+			}
+		}
 	}
 
 	private var opStack = [Op](  )
@@ -69,7 +85,8 @@ class CalculatorBrainModel
 	
 	func evaluate(  ) -> Double?
 	{
-		let (result, _) = evaluate(opStack)
+		let (result, _) = evaluate( opStack )
+		print( "\(opStack) = \(result) with left over" )
 		return result
 	}
 	
