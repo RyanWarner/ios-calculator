@@ -22,12 +22,12 @@ class CalculatorBrainModel
 			{
 				switch self
 				{
-				case .Operand( let operand ):
-					return "\(operand)"
-				case .UnaryOperation( let symbol, _ ):
-					return symbol
-				case .BinaryOperation( let symbol, _ ):
-					return symbol
+					case .Operand( let operand ):
+						return "\(operand)"
+					case .UnaryOperation( let symbol, _ ):
+						return symbol
+					case .BinaryOperation( let symbol, _ ):
+						return symbol
 				}
 			}
 		}
@@ -85,8 +85,8 @@ class CalculatorBrainModel
 	
 	func evaluate(  ) -> Double?
 	{
-		let (result, _) = evaluate( opStack )
-		print( "\(opStack) = \(result) with left over" )
+		let (result, remainder) = evaluate( opStack )
+		print( "\(opStack) = \(result) with \(remainder) left over" )
 		return result
 	}
 	
