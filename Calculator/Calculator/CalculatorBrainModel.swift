@@ -44,6 +44,35 @@ class CalculatorBrainModel
 		knownOperations["−"] = Op.BinaryOperation("−") { $1 - $0 }
 		knownOperations["√"] = Op.UnaryOperation("√", sqrt)
 	}
+	
+	var program: AnyObject // This is a PropertyList
+	{
+		get
+		{
+			return opStack.map { $0.debugDescription }
+		}
+		
+		set
+		{
+			if let opSymbols = newValue as? Array<String>
+			{
+				var newOpStack = [Op]()
+				for opSymbol in opSymbols
+				{
+					if let op = knownOperations[opSymbol]
+					{
+						newOpStack.append(op)
+					}
+					else if let operand = NSNumberFormatter(  ).numberFromString(opSymbol)?.doubleValue
+					{
+						newOpStack.append( .Operand( operand ) )
+					}
+				}
+				
+				opStack = newOpStack
+			}
+		}
+	}
 
 
 	// This function returns a tuple
